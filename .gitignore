@@ -1,4 +1,10 @@
+README.html
+LAYOUT.html
+FAQ.html
+DESIGN.html
+CONTRIBUTING.html
+CONDUCT.html
 *~
 *.pyc
-.DS_Store
 _site
+.DS_Store
