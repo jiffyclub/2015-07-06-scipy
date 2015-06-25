@@ -39,7 +39,7 @@ __version__ = '0.1'
 
 
 def check():
-    if _sys.version_info < (2, 6):
+    if _sys.version_info < (3, 3):
         print('check for Python version (python):')
         print('outdated version of Python: ' + _sys.version)
         return False
@@ -52,5 +52,5 @@ if __name__ == '__main__':
     else:
         print('Failed')
         print('Install a current version of Python!')
-        print('http://www.python.org/download/releases/2.7.3/#download')
+        print('http://continuum.io/downloads#py34')
         _sys.exit(1)

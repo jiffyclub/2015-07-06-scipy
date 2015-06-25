@@ -70,9 +70,9 @@ CHECKS = [
     'virtual-browser',
 # Version control
     'git',
-    'hg',              # Command line tool
+    #'hg',              # Command line tool
     #'mercurial',       # Python package
-    'EasyMercurial',
+    #'EasyMercurial',
 # Build tools and packaging
     'make',
     'virtual-pypi-installer',
@@ -98,7 +98,7 @@ CHECKS = [
     'sympy',
     'Cython',
     'networkx',
-    'mayavi.mlab',
+    #'mayavi.mlab',
     ]
 
 CHECKER = {}
@@ -380,7 +380,7 @@ class Dependency (object):
 
 class PythonDependency (Dependency):
     def __init__(self, name='python', long_name='Python version',
-                 minimum_version=(2, 6), **kwargs):
+                 minimum_version=(3, 3), **kwargs):
         super(PythonDependency, self).__init__(
             name=name, long_name=long_name, minimum_version=minimum_version,
             **kwargs)
