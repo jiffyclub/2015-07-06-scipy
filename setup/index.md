@@ -1,4 +1,5 @@
 ---
+root: ..
 layout: page
 title: Testing Setup
 ---
