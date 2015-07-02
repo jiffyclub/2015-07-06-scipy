@@ -74,7 +74,7 @@ CHECKS = [
     #'mercurial',       # Python package
     #'EasyMercurial',
 # Build tools and packaging
-    'make',
+    # 'make',
     'virtual-pypi-installer',
     'setuptools',
     #'xcode',
@@ -84,8 +84,8 @@ CHECKS = [
     'py.test',         # Command line tool
     'pytest',          # Python package
 # SQL
-    'sqlite3',         # Command line tool
-    'sqlite3-python',  # Python package
+    # 'sqlite3',         # Command line tool
+    # 'sqlite3-python',  # Python package
 # Python
     'python',
     'ipython',         # Command line tool
@@ -95,9 +95,9 @@ CHECKS = [
     'scipy',
     'matplotlib',
     'pandas',
-    'sympy',
-    'Cython',
-    'networkx',
+    # 'sympy',
+    # 'Cython',
+    # 'networkx',
     #'mayavi.mlab',
     ]
 
