@@ -1,0 +1,91 @@
+.reveal {
+    overflow: visible !important;
+    font-size: 250% !important;
+}
+
+div.slides {
+    width: 1024px !important;
+    height: 768px !important;
+}
+
+.reveal .slides>section>section {
+    padding: 0;
+}
+
+.rendered_html h1:first-child {
+    margin-top: 0;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+    font-family: sans-serif !important;
+}
+
+.rendered_html h5 {
+    margin-top: 0.5em !important;
+}
+
+.reveal p, .reveal li {
+    font-size: 1.2em;
+}
+
+.reveal li {
+    padding: 0;
+}
+
+.reveal li ul li {
+    padding: 0.1em !important;
+    font-size: 0.9em;
+}
+
+p.caption, p.footnote {
+    font-size: 0.8em !important;
+}
+
+img {
+    max-height: 450px !important;
+    /* margin-left: auto !important; */
+    /* margin-right: auto !important; */
+}
+
+blockquote {
+    box-shadow: none !important;
+    border-left: 5px gray solid !important;
+    padding: 0 0 0.5em 1em !important;
+}
+
+.prompt {
+    visibility: hidden;
+    display: none;
+}
+
+.rendered_html ul, .rendered_html ol {
+    margin: 0 1em;
+}
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+
+.reveal .slide-number {
+    font-size: 1em;
+    color: black;
+    opacity: 1;
+    right: 2em;
+    bottom: 2em;
+}
+
+a.anchor-link {
+    padding: 0 !important;
+    display: none !important;
+}
+
+p.tiny {
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+body.cython {
+    background: white;
+}
