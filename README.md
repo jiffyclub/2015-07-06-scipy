@@ -3,6 +3,20 @@
 Visit the [workshop website](https://jiffyclub.github.io/2015-07-06-scipy/)
 for software installation instructions and schedule.
 
+## Links
+
+Etherpad:
+https://etherpad.mozilla.org/2015-07-06-scipy
+
+Shell Lessons:
+http://jenshnielsen.github.io/2015-07-06-scipy-shell-novice/
+
+Scientific Python Notebooks:
+http://nbviewer.ipython.org/github/jiffyclub/2015-07-06-scipy/tree/gh-pages/scientific_python/
+
+Scientific Python Slides:
+https://jiffyclub.github.io/2015-07-06-scipy/scientific_python/slides/Scientific%20Python%20Tools.slides.html#/
+
 ## Instructors
 
 **Shell**
