@@ -12,7 +12,9 @@ Shell Lessons:
 http://jenshnielsen.github.io/2015-07-06-scipy-shell-novice/
 
 Git Lessons:
+
 [Branching in Git Slides](http://slides.com/abostroem/deck-4)
+
 [Collaboration in Git Slides](http://slides.com/abostroem/collaborating_using_git)
 
 
