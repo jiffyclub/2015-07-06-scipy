@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>10-cmdline</title>
+<title>00-python-intro-w-solutions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,19 +177,17 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Command-Line-Programs">Command-Line Programs<a class="anchor-link" href="#Command-Line-Programs">&#182;</a></h1><h2 id="Learning-Objectives-{.objectives}">Learning Objectives {.objectives}<a class="anchor-link" href="#Learning-Objectives-{.objectives}">&#182;</a></h2><ul>
-<li>Use the values of command-line arguments in a program.</li>
-<li>Handle flags and files separately in a command-line program.</li>
-<li>Read data from standard input in a program so that it can be used in a pipeline.</li>
-</ul>
-<p>The IPython Notebook and other interactive tools are great for prototyping code and exploring data,
-but sooner or later we will want to use our program in a pipeline
-or run it in a shell script to process thousands of data files.
-In order to do that,
-we need to make our programs work like other Unix command-line tools.
-For example,
-we may want a program that reads a dataset
-and prints the average inflammation per patient.</p>
+<h1 id="Scientific-Python-Basics">Scientific Python Basics<a class="anchor-link" href="#Scientific-Python-Basics">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Prepared by: Cindee Madison, Thomas Kluyver (Any errors are our own)<br>
+Thanks to: Justin Kitzes, Matt Davis</p>
 
 </div>
 </div>
@@ -199,11 +197,10 @@ and prints the average inflammation per patient.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Switching-to-Shell-Commands">Switching to Shell Commands<a class="anchor-link" href="#Switching-to-Shell-Commands">&#182;</a></h2><p>In this lesson we are switching from typing commands in a Python interpreter to typing
-commands in a shell terminal window (such as bash). When you see a <code>$</code> in front of a
-command that tells you to run that command in the shell rather than the Python interpreter.</p>
-<p>This program does exactly what we want - it prints the average inflammation per patient
-for a given file.</p>
+<h2 id="1.-Individual-things">1. Individual things<a class="anchor-link" href="#1.-Individual-things">&#182;</a></h2><p>The most basic component of any programming language are "things", also called variables or
+(in special cases) objects.</p>
+<p>The most common basic "things" in Python are integers, floats, strings, booleans, and
+some special objects of various types. We'll meet many of these as we go through the lesson.</p>
 
 </div>
 </div>
@@ -213,15 +210,7 @@ for a given file.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>$ python readings.py --mean data/inflammation-01.csv
-5.45
-5.425
-6.1
-...
-6.4
-7.05
-5.9</code></pre>
+<p><strong>TIP:</strong> To run the code in a cell quickly, press Ctrl-Enter.</p>
 
 </div>
 </div>
@@ -231,12 +220,102 @@ for a given file.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We might also want to look at the minimum of the first four lines</p>
+<p><strong>TIP:</strong> To quickly create a new cell below an existing one, type Ctrl-m then b.
+Other shortcuts for making, deleting, and moving cells are in the menubar at the top of the
+screen.</p>
 
-<pre><code>$ head -4 inflammation-01.csv | python readings.py --min</code></pre>
-<p>or the maximum inflammations in several files one after another:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># A thing</span>
+<span class="mi">2</span>
+</pre></div>
 
-<pre><code>$ python readings.py --max inflammation-*.csv</code></pre>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Use print to show multiple things in the same cell</span>
+<span class="c"># Note that you can use single or double quotes for strings</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Things can be stored as variables</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s">&#39;hello&#39;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="k">True</span>  <span class="c"># This is case sensitive</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># The type function tells us the type of thing we have</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># What happens when a new variable point to a previous variable?</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c">## What is b?</span>
+<span class="nb">print</span> <span class="n">b</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Commands-that-operate-on-things">2. Commands that operate on things<a class="anchor-link" href="#2.-Commands-that-operate-on-things">&#182;</a></h2><p>Just storing data in variables isn't much use to us. Right away, we'd like to start performing
+operations and manipulations on data and variables.</p>
+<p>There are three very common means of performing an operation on a thing.</p>
 
 </div>
 </div>
@@ -246,65 +325,245 @@ for a given file.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Our scripts should do the following:</p>
-<ol>
-<li>If no filename is given on the command line, read data from <a href="reference.html#standard-input">standard input</a>.</li>
-<li>If one or more filenames are given, read data from them and report statistics for each file separately.</li>
-<li>Use the <code>--min</code>, <code>--mean</code>, or <code>--max</code> flag to determine what statistic to print.</li>
+<h3 id="2.1-Use-an-operator">2.1 Use an operator<a class="anchor-link" href="#2.1-Use-an-operator">&#182;</a></h3><p>All of the basic math operators work like you think they should for numbers. They can also
+do some useful operations on other things, like strings. There are also boolean operators that
+compare quantities and give back a <code>bool</code> variable as a result.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Standard math operators work as expected on numbers</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>  <span class="c"># a to the power of b (a^b does something completely different!)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>   <span class="c"># Careful with dividing integers if you use Python 2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># There are also operators for strings</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;hello&#39;</span> <span class="o">+</span> <span class="s">&#39;world&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;hello&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c">#print(&#39;hello&#39; / 3)  # You can&#39;t do this!</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Boolean operators compare two things</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">or</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.2-Use-a-function">2.2 Use a function<a class="anchor-link" href="#2.2-Use-a-function">&#182;</a></h3><p>These will be very familiar to anyone who has programmed in any language, and work like you
+would expect.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># There are thousands of functions that operate on things</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mf">3.3</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>TIP:</strong> To find out what a function does, you can type it's name and then a question mark to
+get a pop up help window. Or, to see what arguments it takes, you can type its name, an open
+parenthesis, and hit tab.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">round</span><span class="o">?</span>
+<span class="c">#round(</span>
+<span class="nb">round</span><span class="p">(</span><span class="mf">3.14159</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>TIP:</strong> Many useful functions are not in the Python built in library, but are in external
+scientific packages. These need to be imported into your Python notebook (or program) before
+they can be used. Probably the most important of these are numpy and matplotlib.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Many useful functions are in external packages</span>
+<span class="c"># Let&#39;s meet numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># To see what&#39;s in a package, type the name, a period, then hit tab</span>
+<span class="c">#np?</span>
+<span class="n">np</span><span class="o">.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Some examples of numpy functions and &quot;things&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>  <span class="c"># Not a function, just a variable</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.3-Use-a-method">2.3 Use a method<a class="anchor-link" href="#2.3-Use-a-method">&#182;</a></h3><p>Before we get any farther into the Python language, we have to say a word about "objects". We
+will not be teaching object oriented programming in this workshop, but you will encounter objects
+throughout Python (in fact, even seemingly simple things like ints and strings are actually
+objects in Python).</p>
+<p>In the simplest terms, you can think of an object as a small bundled "thing" that contains within
+itself both data and functions that operate on that data. For example, strings in Python are
+objects that contain a set of characters and also various functions that operate on the set of
+characters. When bundled in an object, these functions are called "methods".</p>
+<p>Instead of the "normal" <code>function(arguments)</code> syntax, methods are called using the
+syntax <code>variable.method(arguments)</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># A string is actually an object</span>
+<span class="n">a</span> <span class="o">=</span> <span class="s">&#39;hello, world&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Objects have bundled methods</span>
+<span class="c">#a.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exercise-1---Conversion">Exercise 1 - Conversion<a class="anchor-link" href="#Exercise-1---Conversion">&#182;</a></h3><p>Throughout this lesson, we will successively build towards a program that will calculate the
+variance of some measurements,  in this case <code>Height in Metres</code>.  The first thing we want to do is convert from an antiquated measurement system.</p>
+<p>To change inches into metres we use the following equation (conversion factor is rounded)</p>
+<h2 id="$metre-=-\frac{inches}{39}$">$metre = \frac{inches}{39}$<a class="anchor-link" href="#$metre-=-\frac{inches}{39}$">&#182;</a></h2><ol>
+<li>Create a variable for the conversion factor, called <code>inches_in_metre</code>.</li>
+<li>Create a variable (<code>inches</code>) for your height in inches, as inaccurately as you want.</li>
+<li>Divide <code>inches</code> by <code>inches_in_metre</code>, and store the result in a new variable, <code>metres</code>.</li>
+<li>Print the result</li>
 </ol>
-<p>To make this work,
-we need to know how to handle command-line arguments in a program,
-and how to get at standard input.
-We'll tackle these questions in turn below.</p>
-<h2 id="Command-Line-Arguments">Command-Line Arguments<a class="anchor-link" href="#Command-Line-Arguments">&#182;</a></h2><p>Using the text editor of your choice,
-save the following in a text file called <code>sys-version.py</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="nb">print</span><span class="p">(</span><span class="s">&#39;version is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>version is 3.4.3 |Continuum Analytics, Inc.| (default, Jun  4 2015, 15:29:08) 
-[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The first line imports a library called <code>sys</code>,
-which is short for "system".
-It defines values such as <code>sys.version</code>,
-which describes which version of Python we are running.
-We can run this script from the command line like this:</p>
-
-<pre><code>$ python sys-version.py
-version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20)
-[GCC 4.0.1 (Apple Inc. build 5493)]</code></pre>
+<p><strong>Bonus</strong></p>
+<p>Convert from feet and inches to metres.</p>
 
 </div>
 </div>
@@ -314,557 +573,43 @@ version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Create another file called <code>argv-list.py</code> and save the following text to it.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="nb">print</span><span class="p">(</span><span class="s">&#39;sys.argv is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>sys.argv is [&apos;/home/takluyver/anaconda/envs/ipy3-release/lib/python3.4/site-packages/IPython/kernel/__main__.py&apos;, &apos;-f&apos;, &apos;/home/takluyver/.ipython/profile_default/security/kernel-72b202d0-f67b-4b79-99e4-a857c00ab31e.json&apos;, &apos;--profile-dir&apos;, &apos;/home/takluyver/.ipython/profile_default&apos;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The strange name <code>argv</code> stands for "argument values".
-Whenever Python runs a program,
-it takes all of the values given on the command line
-and puts them in the list <code>sys.argv</code>
-so that the program can determine what they were.
-If we run this program with no arguments:</p>
-
-<pre><code>$ python argv-list.py
-sys.argv is ['argv-list.py']</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>the only thing in the list is the full path to our script,
-which is always <code>sys.argv[0]</code>.
-If we run it with a few arguments, however:</p>
-
-<pre><code>$ python argv-list.py first second third
-sys.argv is ['argv-list.py', 'first', 'second', 'third']</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>then Python adds each of those arguments to that magic list.</p>
-<p>With this in hand,
-let's build a version of <code>readings.py</code> that always prints the per-patient mean of a single data file.
-The first step is to write a function that outlines our implementation,
-and a placeholder for the function that does the actual work.
-By convention this function is usually called <code>main</code>,
-though we can call it whatever we want:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-01.py
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    filename = sys.argv[1]
-    data = numpy.loadtxt(filename, delimiter=&apos;,&apos;)
-    for m in data.mean(axis=1):
-        print m
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This function gets the name of the script from <code>sys.argv[0]</code>,
-because that's where it's always put,
-and the name of the file to process from <code>sys.argv[1]</code>.
-Here's a simple test:</p>
-
-<pre><code>$ python code/readings-01.py data/inflammation-01.csv</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>There is no output because we have defined a function,
-but haven't actually called it.
-Let's add a call to <code>main</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-02.py
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    filename = sys.argv[1]
-    data = numpy.loadtxt(filename, delimiter=&apos;,&apos;)
-    for m in data.mean(axis=1):
-        print m
-
-main()
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>and run that:</p>
-
-<pre><code>$ python code/readings-02.py data/inflammation-01.csv
-5.45
-5.425
-6.1
-5.9
-5.55
-6.225
-5.975
-6.65
-6.625
-6.525
-6.775
-5.8
-6.225
-5.75
-5.225
-6.3
-6.55
-5.7
-5.85
-6.55
-5.775
-5.825
-6.175
-6.1
-5.8
-6.425
-6.05
-6.025
-6.175
-6.55
-6.175
-6.35
-6.725
-6.125
-7.075
-5.725
-5.925
-6.15
-6.075
-5.75
-5.975
-5.725
-6.3
-5.9
-6.75
-5.925
-7.225
-6.15
-5.95
-6.275
-5.7
-6.1
-6.825
-5.975
-6.725
-5.7
-6.25
-6.4
-7.05
-5.9</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Right-Way-to-Do-It">The Right Way to Do It<a class="anchor-link" href="#The-Right-Way-to-Do-It">&#182;</a></h3><blockquote><p>If our programs can take complex parameters or multiple filenames,
-we shouldn't handle <code>sys.argv</code> directly.
-Instead,
-we should use Python's <code>argparse</code> library,
-which handles common cases in a systematic way,
-and also makes it easy for us to provide sensible error messages for our users.</p>
-</blockquote>
-<h2 id="Handling-Multiple-Files">Handling Multiple Files<a class="anchor-link" href="#Handling-Multiple-Files">&#182;</a></h2><p>The next step is to teach our program how to handle multiple files.
-Since 60 lines of output per file is a lot to page through,
-we'll start by using three smaller files,
-each of which has three days of data for two patients:</p>
-
-<pre><code>$ ls data/small-*.csv
-data/small-01.csv  data/small-02.csv  data/small-03.csv</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>$ cat data/small-01.csv
-0,0,1
-0,1,2</code></pre>
-
-<pre><code>$ python code/readings-02.py data/small-01.csv
-0.333333333333
-1.0</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Using small data files as input also allows us to check our results more easily:
-here,
-for example,
-we can see that our program is calculating the mean correctly for each line,
-whereas we were really taking it on faith before.
-This is yet another rule of programming:
-<em>test the simple things first</em>.</p>
-<p>We want our program to process each file separately,
-so we need a loop that executes once for each filename.
-If we specify the files on the command line,
-the filenames will be in <code>sys.argv</code>,
-but we need to be careful:
-<code>sys.argv[0]</code> will always be the name of our script,
-rather than the name of a file.
-We also need to handle an unknown number of filenames,
-since our program could be run for any number of files.</p>
-<p>The solution to both problems is to loop over the contents of <code>sys.argv[1:]</code>.
-The '1' tells Python to start the slice at location 1,
-so the program's name isn't included;
-since we've left off the upper bound,
-the slice runs to the end of the list,
-and includes all the filenames.
-Here's our changed program
-<code>readings-03.py</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-03.py
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    for filename in sys.argv[1:]:
-        data = numpy.loadtxt(filename, delimiter=&apos;,&apos;)
-        for m in data.mean(axis=1):
-            print m
-
-main()
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>and here it is in action:</p>
-
-<pre><code>$ python code/readings-03.py data/small-01.csv data/small-02.csv
-0.333333333333
-1.0
-13.6666666667
-11.0</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Right-Way-to-Do-It">The Right Way to Do It<a class="anchor-link" href="#The-Right-Way-to-Do-It">&#182;</a></h3><blockquote><p>At this point,
-we have created three versions of our script called <code>readings-01.py</code>,
-<code>readings-02.py</code>, and <code>readings-03.py</code>.
-We wouldn't do this in real life:
-instead,
-we would have one file called <code>readings.py</code> that we committed to version control
-every time we got an enhancement working.
-For teaching,
-though,
-we need all the successive versions side by side.</p>
-</blockquote>
-<h2 id="Handling-Command-Line-Flags">Handling Command-Line Flags<a class="anchor-link" href="#Handling-Command-Line-Flags">&#182;</a></h2><p>The next step is to teach our program to pay attention to the <code>--min</code>, <code>--mean</code>, and <code>--max</code> flags.
-These always appear before the names of the files,
-so we could just do this:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-04.py
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    action = sys.argv[1]
-    filenames = sys.argv[2:]
-
-    for f in filenames:
-        data = numpy.loadtxt(f, delimiter=&apos;,&apos;)
-
-        if action == &apos;--min&apos;:
-            values = data.min(axis=1)
-        elif action == &apos;--mean&apos;:
-            values = data.mean(axis=1)
-        elif action == &apos;--max&apos;:
-            values = data.max(axis=1)
-
-        for m in values:
-            print m
-
-main()
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This works:</p>
-
-<pre><code>$ python code/readings-04.py --max data/small-01.csv
-1.0
-2.0</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>but there are several things wrong with it:</p>
+<p><strong>TIP:</strong> A 'gotcha' for all python 2 users (it was changed in python 3) is the result of integer division. To make it work the obvious way, either:</p>
 <ol>
-<li><p><code>main</code> is too large to read comfortably.</p>
-</li>
-<li><p>If <code>action</code> isn't one of the three recognized flags,
-the program loads each file but does nothing with it
-(because none of the branches in the conditional match).
-<a href="reference.html#silence-failure">Silent failures</a> like this
-are always hard to debug.</p>
-</li>
+<li><code>inches_in_metre = 39.</code>  (add the decimal to cast to a float, or use 39.4 to be more accurate)</li>
+<li><code>from __future__ import division</code> -  Put this at the <strong>top</strong> of the code and it will work </li>
 </ol>
-<p>This version pulls the processing of each file out of the loop into a function of its own.
-It also checks that <code>action</code> is one of the allowed flags
-before doing any processing,
-so that the program fails fast:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-05.py
+<div class=" highlight hl-ipython3"><pre><span class="n">inches_in_metre</span> <span class="o">=</span> <span class="mf">39.</span>
+<span class="n">inches_in_foot</span> <span class="o">=</span> <span class="mf">12.</span>
+<span class="n">feet</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">inches</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">metres</span> <span class="o">=</span> <span class="p">(</span><span class="n">inches</span> <span class="o">+</span> <span class="n">feet</span><span class="o">*</span><span class="n">inches_in_foot</span><span class="p">)</span><span class="o">/</span><span class="n">inches_in_metre</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;height in metres is:&#39;</span><span class="p">,</span> <span class="n">metres</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    action = sys.argv[1]
-    filenames = sys.argv[2:]
-    assert action in [&apos;--min&apos;, &apos;--mean&apos;, &apos;--max&apos;], \
-           &apos;Action is not one of --min, --mean, or --max: &apos; + action
-    for f in filenames:
-        process(f, action)
-
-def process(filename, action):
-    data = numpy.loadtxt(filename, delimiter=&apos;,&apos;)
-
-    if action == &apos;--min&apos;:
-        values = data.min(axis=1)
-    elif action == &apos;--mean&apos;:
-        values = data.mean(axis=1)
-    elif action == &apos;--max&apos;:
-        values = data.max(axis=1)
-
-    for m in values:
-        print m
-
-main()
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is four lines longer than its predecessor,
-but broken into more digestible chunks of 8 and 12 lines.</p>
-<p>Python has a module named <a href="http://docs.python.org/dev/library/argparse.html">argparse</a>
-that helps handle complex command-line flags. We will not cover this module in this lesson
-but you can go to Tshepang Lekhonkhobe's <a href="http://docs.python.org/dev/howto/argparse.html">Argparse tutorial</a>
-that is part of Python's Official Documentation.</p>
+<h2 id="3.-Collections-of-things">3. Collections of things<a class="anchor-link" href="#3.-Collections-of-things">&#182;</a></h2><p>While it is interesting to explore your own height, in science we work with larger  slightly more complex datasets. In this example, we are interested in the characteristics and distribution of heights. Python provides us with a number of objects to handle collections of things.</p>
+<p>Probably 99% of your work in scientific Python will use one of four types of collections:
+<code>lists</code>, <code>tuples</code>, <code>dictionaries</code>, and <code>numpy arrays</code>. We'll look quickly at each of these and what
+they can do for you.</p>
 
 </div>
 </div>
@@ -874,44 +619,109 @@ that is part of Python's Official Documentation.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Handling-Standard-Input">Handling Standard Input<a class="anchor-link" href="#Handling-Standard-Input">&#182;</a></h2><p>The next thing our program has to do is read data from standard input if no filenames are given
-so that we can put it in a pipeline,
-redirect input to it,
-and so on.
-Let's experiment in another script called <code>count-stdin.py</code>:</p>
+<h3 id="3.1-Lists">3.1 Lists<a class="anchor-link" href="#3.1-Lists">&#182;</a></h3><p>Lists are probably the handiest and most flexible type of container.</p>
+<p>Lists are declared with square brackets [].</p>
+<p>Individual elements of a list can be selected using the syntax <code>a[ind]</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/count-stdin.py
+<div class=" highlight hl-ipython3"><pre><span class="c"># Lists are created with square bracket syntax</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;blueberry&#39;</span><span class="p">,</span> <span class="s">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s">&#39;pineapple&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Lists (and all collections) are also indexed with square brackets</span>
+<span class="c"># NOTE: The first index is zero, not one</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
 
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-
-count = 0
-for line in sys.stdin:
-    count += 1
-
-print count, &apos;lines in standard input&apos;
-</pre>
 </div>
 </div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c">## You can also count from the end of the list</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;last item is:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;second to last item is:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># you can access multiple items from a list by slicing, using a colon between indexes</span>
+<span class="c"># NOTE: The end value is not inclusive</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;a =&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;get first two:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># You can leave off the start or end if desired</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Lists are objects, like everything else, and have methods such as append</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;banana&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
@@ -921,103 +731,87 @@ print count, &apos;lines in standard input&apos;
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This little program reads lines from a special "file" called <code>sys.stdin</code>,
-which is automatically connected to the program's standard input.
-We don't have to open it—Python and the operating system
-take care of that when the program starts up—but
-we can do almost anything with it that we could do to a regular file.
-Let's try running it as if it were a regular command-line program:</p>
-
-<pre><code>$ python code/count-stdin.py &lt; data/small-01.csv
-2 lines in standard input</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A common mistake is to try to run something that reads from standard input like this:</p>
-
-<pre><code>$ python code/count_stdin.py data/small-01.csv</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>i.e., to forget the <code>&lt;</code> character that redirect the file to standard input.
-In this case,
-there's nothing in standard input,
-so the program waits at the start of the loop for someone to type something on the keyboard.
-Since there's no way for us to do this,
-our program is stuck,
-and we have to halt it using the <code>Interrupt</code> option from the <code>Kernel</code> menu in the Notebook.</p>
-<p>We now need to rewrite the program so that it loads data from <code>sys.stdin</code> if no filenames are provided.
-Luckily,
-<code>numpy.loadtxt</code> can handle either a filename or an open file as its first parameter,
-so we don't actually need to change <code>process</code>.
-That leaves <code>main</code>:</p>
+<p><strong>TIP:</strong> A 'gotcha' for some new Python users is that many collections, including lists,
+actually store pointers to data, not the data itself.</p>
+<p>Remember when we set <code>b=a</code> and then changed <code>a</code>?</p>
+<p>What happens when we do this in a list?</p>
+<p><strong>HELP:</strong> look into the <code>copy</code> module</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span class="o">!</span>cat code/readings-06.py
+<div class=" highlight hl-ipython3"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c">## What is b?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;What is b?&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;original b&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;What is b after we change a ?&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="EXERCISE-2---Store-a-bunch-of-heights-(in-metres)-in-a-list">EXERCISE 2 - Store a bunch of heights (in metres) in a list<a class="anchor-link" href="#EXERCISE-2---Store-a-bunch-of-heights-(in-metres)-in-a-list">&#182;</a></h3><ol>
+<li>Ask five people around you for their heights (in metres).</li>
+<li>Store these in a list called <code>heights</code>.</li>
+<li>Append your own height, calculated above in the variable <em>metres</em>, to the list.</li>
+<li>Get the first height from the list and print it.</li>
+</ol>
+<p><strong>Bonus</strong></p>
+<ol>
+<li>Extract the last value in two different ways: first, by using the index for
+the last item in the list, and second, presuming that you do not know how long the list is.</li>
+</ol>
+<p><strong>HINT:</strong> <strong>len()</strong> can be used to find the length of a collection</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.82</span><span class="p">,</span> <span class="mf">2.05</span><span class="p">,</span> <span class="mf">1.90</span><span class="p">,</span> <span class="mf">1.71</span><span class="p">,</span> <span class="mf">1.83</span><span class="p">]</span>
+<span class="n">heights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;First height is:&quot;</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    action = sys.argv[1]
-    filenames = sys.argv[2:]
-    assert action in [&apos;--min&apos;, &apos;--mean&apos;, &apos;--max&apos;], \
-           &apos;Action is not one of --min, --mean, or --max: &apos; + action
-    if len(filenames) == 0:
-        process(sys.stdin, action)
-    else:
-        for f in filenames:
-            process(f, action)
-
-def process(filename, action):
-    data = numpy.loadtxt(filename, delimiter=&apos;,&apos;)
-
-    if action == &apos;--min&apos;:
-        values = data.min(axis=1)
-    elif action == &apos;--mean&apos;:
-        values = data.mean(axis=1)
-    elif action == &apos;--max&apos;:
-        values = data.max(axis=1)
-
-    for m in values:
-        print m
-
-main()
-</pre>
+</div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">print</span><span class="p">(</span><span class="s">&quot;Last height is&quot;</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;Last height is&quot;</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;Last height is&quot;</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
@@ -1027,11 +821,60 @@ main()
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try it out:</p>
+<h3 id="3.2-Tuples">3.2 Tuples<a class="anchor-link" href="#3.2-Tuples">&#182;</a></h3><p>We won't say a whole lot about tuples except to mention that they basically work just like lists, with
+two major exceptions:</p>
+<ol>
+<li>You declare tuples using () instead of []</li>
+<li>Once you make a tuple, you can't change what's in it (referred to as immutable)</li>
+</ol>
+<p>You'll see tuples come up throughout the Python language, and over time you'll develop a feel for when
+to use them.</p>
+<p>In general, they're often used instead of lists:</p>
+<ol>
+<li>to group items when the position in the collection is critical, such as coord = (x,y)</li>
+<li>when you want to make prevent accidental modification of the items, e.g. shape = (12,23)</li>
+</ol>
 
-<pre><code>$ python code/readings-06.py --mean data/small-01.csv
-0.333333333333
-1.0</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;this won&#39;t work with a tuple&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Anatomy-of-a-traceback-error">Anatomy of a traceback error<a class="anchor-link" href="#Anatomy-of-a-traceback-error">&#182;</a></h3><p>Traceback errors are <code>raised</code> when you try to do something with code it isn't meant to do.  It is also meant to be informative, but like many things, it is not always as informative as we would like.</p>
+<p>Looking at our error:</p>
+
+<pre><code>TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-25-4d15943dd557&gt; in &lt;module&gt;()
+      1 xy = (23, 45)
+      2 xy[0]
+----&gt; 3 xy[0] = 'this wont work with a tuple'
+
+TypeError: 'tuple' object does not support item assignment
+
+</code></pre>
+<ol>
+<li>The command you tried to run raise a <strong>TypeError</strong>  This suggests you are using a variable in a way that its <strong>Type</strong> doesnt support</li>
+<li>the arrow ----&gt; points to the line where the error occurred, In this case on line 3 of your code form the above line.</li>
+<li>Learning how to <strong>read</strong> a traceback error is an important skill to develop, and helps you know how to ask questions about what has gone wrong in your code.</li>
+</ol>
 
 </div>
 </div>
@@ -1041,106 +884,850 @@ main()
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's better.
-In fact, that's done:
-the program now does everything we set out to do.</p>
-<h2 id="Challenges">Challenges<a class="anchor-link" href="#Challenges">&#182;</a></h2><h3 id="Arithmetic-on-the-command-line">Arithmetic on the command line<a class="anchor-link" href="#Arithmetic-on-the-command-line">&#182;</a></h3><blockquote><p>Write a command-line program that does addition and subtraction:</p>
-
-<pre><code>$ python arith.py add 1 2
-3</code></pre>
-
-<pre><code>$ python arith.py subtract 3 4
--1</code></pre>
-</blockquote>
+<h3 id="3.3-Dictionaries">3.3 Dictionaries<a class="anchor-link" href="#3.3-Dictionaries">&#182;</a></h3><p>Dictionaries are the collection to use when you want to store and retrieve things by their names
+(or some other kind of key) instead of by their position in the collection. A good example is a set
+of model parameters, each of which has a name and a value. Dictionaries are declared using {}.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Make a dictionary of model parameters</span>
+<span class="n">convertors</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;inches_in_feet&#39;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+              <span class="s">&#39;inches_in_metre&#39;</span> <span class="p">:</span> <span class="mi">39</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">convertors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">convertors</span><span class="p">[</span><span class="s">&#39;inches_in_feet&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c">## Add a new key:value pair</span>
+<span class="n">convertors</span><span class="p">[</span><span class="s">&#39;metres_in_mile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1609.34</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">convertors</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Raise a KEY error</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">convertors</span><span class="p">[</span><span class="s">&#39;blueberry&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Finding-particular-files">Finding particular files<a class="anchor-link" href="#Finding-particular-files">&#182;</a></h3><blockquote><p>Using the <code>glob</code> module introduced <a href="04-files.html">earlier</a>,
-write a simple version of <code>ls</code> that shows files in the current directory with a particular suffix.
-A call to this script should look like this:</p>
-
-<pre><code>$ python my_ls.py py
-left.py
-right.py
-zero.py</code></pre>
-</blockquote>
+<h3 id="3.4-Numpy-arrays-(ndarrays)">3.4 Numpy arrays (ndarrays)<a class="anchor-link" href="#3.4-Numpy-arrays-(ndarrays)">&#182;</a></h3><p>Even though numpy arrays (often written as ndarrays, for n-dimensional arrays) are not part of the
+core Python libraries, they are so useful in scientific Python that we'll include them here in the 
+core lesson. Numpy arrays are collections of things, all of which must be the same type, that work
+similarly to lists (as we've described them so far). The most important are:</p>
+<ol>
+<li>You can easily perform elementwise operations (and matrix algebra) on arrays</li>
+<li>Arrays can be n-dimensional</li>
+<li>There is no equivalent to append, although arrays can be concatenated</li>
+</ol>
+<p>Arrays can be created from existing collections such as lists, or instantiated "from scratch" in a 
+few useful ways.</p>
+<p>When getting started with scientific Python, you will probably want to try to use ndarrays whenever
+possible, saving the other types of collections for those cases when you have a specific reason to use
+them.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># We need to import the numpy library to have access to it </span>
+<span class="c"># We can also create an alias for a library, this is something you will commonly see with numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Make an array from a list</span>
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">blist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">blist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Do arithmetic on arrays</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Boolean operators work on arrays too, and they return boolean arrays</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Indexing arrays</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Arrays can also be indexed with other boolean arrays</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">b</span><span class="p">[</span><span class="n">a</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">77</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># ndarrays have attributes in addition to methods</span>
+<span class="c">#c.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">prod</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># There are handy ways to make arrays full of ones and zeros</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># You can also easily make arrays of number sequences</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Changing-flags">Changing flags<a class="anchor-link" href="#Changing-flags">&#182;</a></h3><blockquote><p>Rewrite <code>readings.py</code> so that it uses <code>-n</code>, <code>-m</code>, and <code>-x</code> instead of <code>--min</code>, <code>--mean</code>, and <code>--max</code> respectively.
-Is the code easier to read?
-Is the program easier to understand?</p>
-</blockquote>
+<h3 id="EXERCISE-3---Using-Arrays-for-simple-analysis">EXERCISE 3 - Using Arrays for simple analysis<a class="anchor-link" href="#EXERCISE-3---Using-Arrays-for-simple-analysis">&#182;</a></h3><p>Revisit your list of heights</p>
+<ol>
+<li>turn it into an array</li>
+<li>calculate the mean</li>
+<li>create a mask of all heights greater than a certain value (your choice)</li>
+<li>find the mean of the masked heights</li>
+</ol>
+<p><strong>BONUS</strong></p>
+<ol>
+<li>find the number of heights greater than your threshold</li>
+<li>mean() can take an optional argument called axis, which allows you to calculate the mean across different axes, eg across rows or across columns. Create an array with two dimensions (not equal sized) and calculate the mean across rows and mean across columns. Use 'shape' to understand how the means are calculated.</li>
+</ol>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">print</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="n">heights_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;mean of all heights:&#39;</span><span class="p">,</span> <span class="n">heights_array</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.8</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">heights_array</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;mean of heights greater than (&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="s">&#39;):&#39;</span><span class="p">,</span><span class="n">heights_array</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c">##Bonus</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;number of heights &gt;&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span>  <span class="s">&#39;= &#39;</span><span class="p">,</span> <span class="n">heights_array</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c"># Using axis argument</span>
+<span class="n">something</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;shape&#39;</span><span class="p">,</span> <span class="n">something</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;mean over rows&#39;</span><span class="p">,</span> <span class="n">something</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="s">&#39;shape&#39;</span><span class="p">,</span> <span class="n">something</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;mean over columns&#39;</span><span class="p">,</span> <span class="n">something</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="s">&#39;shape&#39;</span><span class="p">,</span> <span class="n">something</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Adding-a-help-message">Adding a help message<a class="anchor-link" href="#Adding-a-help-message">&#182;</a></h3><blockquote><p>Separately,
-modify <code>readings.py</code> so that if no parameters are given
-(i.e., no action is specified and no filenames are given),
-it prints a message explaining how it should be used.</p>
-</blockquote>
+<h2 id="4.-Repeating-yourself">4. Repeating yourself<a class="anchor-link" href="#4.-Repeating-yourself">&#182;</a></h2><p>So far, everything that we've done could, in principle, be done by hand calculation. In this section
+and the next, we really start to take advantage of the power of programming languages to do things
+for us automatically.</p>
+<p>We start here with ways to repeat yourself. The two most common ways of doing this are known as for
+loops and while loops. For loops in Python are useful when you want to cycle over all of the items
+in a collection (such as all of the elements of an array), and while loops are useful when you want to
+cycle for an indefinite amount of time until some condition is met.</p>
+<p>The basic examples below will work for looping over lists, tuples, and arrays. Looping over dictionaries
+is a bit different, since there is a key and a value for each item in a dictionary. Have a look at the
+Python docs for more information.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># A basic for loop - don&#39;t forget the white space!</span>
+<span class="n">wordlist</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;hi&#39;</span><span class="p">,</span> <span class="s">&#39;hello&#39;</span><span class="p">,</span> <span class="s">&#39;bye&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s">&#39;!&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Adding-a-default-action">Adding a default action<a class="anchor-link" href="#Adding-a-default-action">&#182;</a></h3><blockquote><p>Separately,
-modify <code>readings.py</code> so that if no action is given
-it displays the means of the data.</p>
-</blockquote>
+<p><strong>Note on indentation</strong>: Notice the indentation once we enter the for loop.  Every idented statement after the for loop declaration is part of the for loop.  This rule holds true for while loops, if statements, functions, etc. Required identation is one of the reasons Python is such a beautiful language to read.</p>
+<p>If you do not have consistent indentation you will get an <code>IndentationError</code>.  Fortunately, most code editors will ensure your indentation is correction.</p>
+<p><strong>NOTE</strong> In Python the default is to use four (4) spaces for each indentation, most editros can be configured to follow this guide.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Indentation error: Fix it!</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+    <span class="n">new_word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">new_word</span> <span class="o">+</span> <span class="s">&#39;!&#39;</span><span class="p">)</span> <span class="c"># Bad indent</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Sum all of the values in a collection using a for loop</span>
+<span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numlist</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">num</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;Sum is&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Often we want to loop over the indexes of a collection, not just the items</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wordlist</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wordlist</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">wordlist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># While loops are useful when you don&#39;t know how many steps you will need,</span>
+<span class="c"># and want to stop once a certain condition is met.</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">prod</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">prod</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="n">prod</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">prod</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s">&#39;Reached a product of&#39;</span><span class="p">,</span> <span class="n">prod</span><span class="p">,</span> <span class="s">&#39;at step number&#39;</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-file-checker">A file-checker<a class="anchor-link" href="#A-file-checker">&#182;</a></h3><blockquote><p>Write a program called <code>check.py</code> that takes the names of one or more inflammation data files as arguments
-and checks that all the files have the same number of rows and columns.
-What is the best way to test your program?</p>
-</blockquote>
+<p><strong>TIP:</strong> Once we start really generating useful and large collections of data, it becomes unwieldy to
+inspect our results manually. The code below shows how to make a very simple plot of an array.
+We'll do much more plotting later on, this is just to get started.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Load up pylab, a useful plotting library</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c"># Make some x and y data and plot it</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Counting-lines">Counting lines<a class="anchor-link" href="#Counting-lines">&#182;</a></h3><blockquote><p>Write a program called <code>line-count.py</code> that works like the Unix <code>wc</code> command:</p>
-<ul>
-<li>If no filenames are given, it reports the number of lines in standard input.</li>
-<li>If one or more filenames are given, it reports the number of lines in each, followed by the total number of lines.</li>
+<h3 id="EXERCISE-4---Variance">EXERCISE 4 - Variance<a class="anchor-link" href="#EXERCISE-4---Variance">&#182;</a></h3><p>We can now calculate the variance of the heights we collected before.</p>
+<p>As a reminder, <strong>sample variance</strong> is the calculated from the sum of squared differences of each observation from the mean:</p>
+<h3 id="$variance-=-\frac{\Sigma{(x-mean)^2}}{n-1}$">$variance = \frac{\Sigma{(x-mean)^2}}{n-1}$<a class="anchor-link" href="#$variance-=-\frac{\Sigma{(x-mean)^2}}{n-1}$">&#182;</a></h3><p>where <strong>mean</strong> is the mean of our observations, <strong>x</strong> is each individual observation, and <strong>n</strong> is the number of observations.</p>
+<p>First, we need to calculate the mean:</p>
+<ol>
+<li>Create a variable <code>total</code> for the sum of the heights.</li>
+<li>Using a <code>for</code> loop, add each height to <code>total</code>.</li>
+<li>Find the mean by dividing this by the number of measurements, and store it as <code>mean</code>.</li>
+</ol>
+<p><strong>Note</strong>: To get the number of things in a list, use <code>len(the_list)</code>.</p>
+<p>Now we'll use another loop to calculate the variance:</p>
+<ol>
+<li>Create a variable <code>sum_diffsq</code> for the sum of squared differences.</li>
+<li>Make a second <code>for</code> loop over <code>heights</code>.<ul>
+<li>At each step, subtract the height from the mean and call it <code>diff</code>. </li>
+<li>Square this and call it <code>diffsq</code>.</li>
+<li>Add <code>diffsq</code> on to <code>sum_diffsq</code>.</li>
 </ul>
-</blockquote>
+</li>
+<li>Divide <code>diffsq</code> by <code>n-1</code> to get the variance.</li>
+<li>Display the variance.</li>
+</ol>
+<p><strong>Note</strong>: To square a number in Python, use <code>**</code>, eg. <code>5**2</code>.</p>
+<p><strong>Bonus</strong></p>
+<ol>
+<li>Test whether <code>variance</code> is larger than 0.01, and print out a line that says "variance more than 0.01: "
+followed by the answer (either True or False).</li>
+</ol>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">height</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">height</span>
+
+<span class="n">mean</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+
+<span class="n">sum_diffsq</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">height</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">mean</span>
+    <span class="n">diffsq</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">sum_diffsq</span> <span class="o">=</span> <span class="n">sum_diffsq</span> <span class="o">+</span> <span class="n">diffsq</span>
+
+<span class="n">variance</span> <span class="o">=</span> <span class="n">sum_diffsq</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;Sample variance is:&quot;</span><span class="p">,</span> <span class="n">variance</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.-Making-choices">5. Making choices<a class="anchor-link" href="#5.-Making-choices">&#182;</a></h2><p>Often we want to check if a condition is True and take one action if it is, and another action if the
+condition is False. We can achieve this in Python with an if statement.</p>
+<p><strong>TIP:</strong> You can use any expression that returns a boolean value (True or False) in an if statement.
+Common boolean operators are ==, !=, &lt;, &lt;=, &gt;, &gt;=. You can also use <code>is</code> and <code>is not</code> if you want to
+check if two variables are identical in the sense that they are stored in the same location in memory.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># A simple if statement</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;x is positive&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;x is negative&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;x is zero&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># If statements can rely on boolean variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">test</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test</span><span class="p">));</span> <span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">test</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&#39;Test was true&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="6.-Creating-chunks-with-functions-and-modules">6. Creating chunks with functions and modules<a class="anchor-link" href="#6.-Creating-chunks-with-functions-and-modules">&#182;</a></h2><p>One way to write a program is to simply string together commands, like the ones described above, in a long
+file, and then to run that file to generate your results. This may work, but it can be cognitively difficult
+to follow the logic of programs written in this style. Also, it does not allow you to reuse your code
+easily - for example, what if we wanted to run our logistic growth model for several different choices of
+initial parameters?</p>
+<p>The most important ways to "chunk" code into more manageable pieces is to create functions and then
+to gather these functions into modules, and eventually packages. Below we will discuss how to create
+functions and modules. A third common type of "chunk" in Python is classes, but we will not be covering
+object-oriented programming in this workshop.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># We&#39;ve been using functions all day</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">3.333333</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># It&#39;s very easy to write your own functions</span>
+<span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Once a function is &quot;run&quot; and saved in memory, it&#39;s available just like any other function</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">multiply</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># It&#39;s useful to include docstrings to describe what your function does</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function says a greeting. Useful for engendering goodwill</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="s">&#39;Good &#39;</span> <span class="o">+</span> <span class="n">time</span> <span class="o">+</span> <span class="s">&#39;, &#39;</span> <span class="o">+</span> <span class="n">people</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Docstrings</strong>: A docstring is a special type of comment that tells you what a function does.  You can see them when you ask for help about a function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">say_hello</span><span class="p">(</span><span class="s">&#39;afternoon&#39;</span><span class="p">,</span> <span class="s">&#39;friends&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># All arguments must be present, or the function will return an error</span>
+<span class="n">say_hello</span><span class="p">(</span><span class="s">&#39;afternoon&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># Keyword arguments can be used to make some arguments optional by giving them a default value</span>
+<span class="c"># All mandatory arguments must come first, in order</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="s">&#39;friends&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;Good &#39;</span> <span class="o">+</span> <span class="n">time</span> <span class="o">+</span> <span class="s">&#39;, &#39;</span> <span class="o">+</span> <span class="n">people</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">say_hello</span><span class="p">(</span><span class="s">&#39;afternoon&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">say_hello</span><span class="p">(</span><span class="s">&#39;afternoon&#39;</span><span class="p">,</span> <span class="s">&#39;students&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="EXERCISE-5---Creating-a-variance-function">EXERCISE 5 - Creating a variance function<a class="anchor-link" href="#EXERCISE-5---Creating-a-variance-function">&#182;</a></h3><p>Finally, let's turn our variance calculation into a function that we can use over and over again. 
+Copy your code from Exercise 4 into the box below, and do the following:</p>
+<ol>
+<li>Turn your code into a function called <code>calculate_variance</code> that takes a list of values and returns their variance.</li>
+<li>Write a nice docstring describing what your function does.</li>
+<li>In a subsequent cell, call your function with different sets of numbers to make sure it works.</li>
+</ol>
+<p><strong>Bonus</strong></p>
+<ol>
+<li>Refactor your function by pulling out the section that calculates the mean into another function, and calling that inside your <code>calculate_variance</code> function.</li>
+<li>Make sure it can works properly when all the data are integers as well.</li>
+<li>Give a better error message when it's passed an empty list. Use the web to find out how to raise exceptions in Python.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="k">def</span> <span class="nf">calculate_variance</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function to calculate variance of a list of numbers.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    values : list of floats</span>
+<span class="sd">        The measurements.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v : float</span>
+<span class="sd">        The sample variance of the input values.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    
+    <span class="n">sum_diffsq</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">height</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">:</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">mean</span>
+        <span class="n">diffsq</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">sum_diffsq</span> <span class="o">=</span> <span class="n">sum_diffsq</span> <span class="o">+</span> <span class="n">diffsq</span>
+
+    <span class="k">return</span> <span class="n">sum_diffsq</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Calculate mean of values.&#39;&#39;&#39;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">val</span>
+
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="nb">print</span><span class="p">(</span><span class="n">calculate_variance</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_variance</span><span class="p">([</span><span class="mf">174.3</span><span class="p">,</span> <span class="mf">165.2</span><span class="p">,</span> <span class="mi">208</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_variance</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="EXERCISE-6---Putting-the-calculate_mean-and-calculate_variance-function(s)-in-a-module">EXERCISE 6 - Putting the <code>calculate_mean</code> and <code>calculate_variance</code> function(s) in a module<a class="anchor-link" href="#EXERCISE-6---Putting-the-calculate_mean-and-calculate_variance-function(s)-in-a-module">&#182;</a></h3><p>We can make our functions more easily reusable by placing them into modules that we can import, just
+like we have been doing with <code>numpy</code>. It's pretty simple to do this.</p>
+<ol>
+<li>Copy your function(s) into a new text file, in the same directory as this notebook,
+called <code>stats.py</code>.</li>
+<li>In the cell below, type <code>import stats</code> to import the module. Type <code>stats.</code> and hit tab to see the available
+functions in the module. Try calculating the variance of a number of samples of heights (or other random numbers) using your imported module.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c"># import stats</span>
+<span class="c"># reload(stats) # This line forces the re-import of pop if you make changes and run this cell again</span>
+<span class="c"># result = stats.calculate_variance([1.8,1.9,2.0,1.7,1.6,2.2])</span>
+<span class="c">## compare it to numpy&#39;s calculation </span>
+<span class="c">## np_result = np.var([1.8,1.9,2.0,1.7,1.6,2.2])</span>
+<span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="n">np_result</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
