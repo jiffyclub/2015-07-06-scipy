@@ -13,6 +13,8 @@ http://jenshnielsen.github.io/2015-07-06-scipy-shell-novice/
 
 Git Lessons:
 
+[Introduction to Git Slides](https://jiffyclub.github.io/2015-07-06-scipy/slides-local_version_control.html)
+
 [Branching in Git Slides](http://slides.com/abostroem/deck-4)
 
 [Collaboration in Git Slides](http://slides.com/abostroem/collaborating_using_git)
