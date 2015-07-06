@@ -66,7 +66,7 @@ To do all that, we'll have to learn a little bit about programming.
 
 ## Topics
 
-0.  Introduction To Python (intro notebook)
+0.  [Introduction To Python](00-python-intro.html)
 1.  [Analyzing Patient Data](01-numpy.html)
 2.  [Repeating Actions with Loops](02-loop.html)
 3.  [Storing Multiple Values in Lists](03-lists.html)
