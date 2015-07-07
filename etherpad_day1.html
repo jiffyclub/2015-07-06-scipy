@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>/2015-07-06-scipy</title>
+</head>
+<body>&nbsp;&nbsp;&nbsp; <b>Software Carpentry at SciPy 2015</b><br
+/><br
+/><a href="https://etherpad.mozilla.org/2015-07-06-scipy">https://etherpad.mozilla.org/2015-07-06-scipy</a><br
+/><br
+/><a href="https://jiffyclub.github.io/2015-07-06-scipy/">https://jiffyclub.github.io/2015-07-06-scipy/</a><br
+/><br
+/><b>Python</b><br
+/>----------<br
+/>git clone <a href="https://github.com/jiffyclub/2015-07-06-scipy.git">https://github.com/jiffyclub/2015-07-06-scipy.git</a><br
+/><br
+/>Multple ways to launch Python<br
+/>&nbsp;&nbsp;&nbsp; - enter 'python' at the command line<br
+/>&nbsp;&nbsp;&nbsp; - enter 'ipython' at the command line<br
+/>&nbsp;&nbsp;&nbsp; - enter 'ipython notebook' at the command line (do this!)<br
+/><br
+/>First open the "00-python-intro.ipynb" notebook<br
+/><br
+/><b>Python commands:</b><br
+/>Functions can be nested inside each other.<br
+/><b>print() </b>– shows the () text as output<br
+/><b>type()</b> – returns the kind of object () is (integer, string, boolean)<br
+/>&nbsp;&nbsp;&nbsp; - IPython Notebook color codes functions, integers, etc<br
+/>&nbsp;&nbsp;&nbsp; - Strings are between ' ' marks<br
+/><b>len() </b>– counts the number of letters in a string<br
+/><b>round()</b> – rounds decimal to nearest whole number<br
+/><b>==</b> – returns boolean True/False. Use to check whether two values are equal (6 == 7 is False).<br
+/><br
+/>Many functions are part of packages like numpy, scipy, and matplotlib, which you can import into your notebook. It's strongly suggested to always '<b>import numpy as np</b>' to make writing its functions easier, such as np.array<br
+/><br
+/><b>Lists</b> – set of items [item1, item2, item3]. the first item is the 0th [0] item. The last item is the [-1] item<br
+/><b>Tuples</b> – essentially immutable lists. In ( ) instead of [ ] like lists.<br
+/><b>Dictionaries</b> – look up 'keys' to get the 'values'. In { } brackets. {'key1' : value1, 'key2' : value2}<br
+/><br
+/><b>IPython Features:</b><br
+/><b>tab completion</b> - just like the shell<br
+/><b>?</b> - placed after a function name, this opens a help window with the function's documentation<br
+/><b>shift + enter</b> – execute cell<br
+/><b>h</b> – lets you see all keyboard shortcuts. make sure not in a cell (hit 'esc' if so)<br
+/><b>%</b> – indicates functions that are only available in the notebook ("IPython magic")<br
+/><br
+/>General Python documentation: <a href="https://docs.python.org/3/">https://docs.python.org/3/</a><br
+/>NumPy Documentation: <a href="http://docs.scipy.org/doc/numpy/reference/">http://docs.scipy.org/doc/numpy/reference/</a><br
+/><br
+/><b>Loops</b><br
+/>For eachobject in set:<br
+/>&nbsp;&nbsp;&nbsp; Command(eachobject)<br
+/>* Make sure object names make sense, so you and others will understand later<br
+/>* Loop ends when code is no longer indented<br
+/><br
+/><b>Conditionals</b><br
+/>Python can execute one set of code or another, depending on a condition.<br
+/><b>if</b> condition:<br
+/>&nbsp;&nbsp;&nbsp; do this<br
+/><b>elif</b> diffcondition:<br
+/>&nbsp;&nbsp;&nbsp; do that<br
+/><b>else</b>:<br
+/>&nbsp;&nbsp;&nbsp; do something else<br
+/><br
+/><b>Defining Functions</b><br
+/><b>def</b> function_name(object):<br
+/>&nbsp;&nbsp;&nbsp; function content<br
+/><br
+/><b>Shell</b><br
+/>-------<br
+/>Shell Lesson: <a href="http://jenshnielsen.github.io/2015-07-06-scipy-shell-novice/">http://jenshnielsen.github.io/2015-07-06-scipy-shell-novice/</a><br
+/><br
+/>Mac Terminal alternative: <a href="http://www.iterm2.com">http://www.iterm2.com</a><br
+/><br
+/><br
+/>When you're in the data directory you should be able to type ls and see<br
+/><br
+/>&gt; ls<br
+/>bin&nbsp;&nbsp; data&nbsp; tmp&nbsp;&nbsp; users<br
+/><br
+/><br
+/><b>Shell Commands</b>:<br
+/><b>ls</b> – list contents of a directory/folder<br
+/>&nbsp;&nbsp;&nbsp; Modifiers:<br
+/>&nbsp;&nbsp;&nbsp; -F – see which items are folders/directories<br
+/>&nbsp;&nbsp;&nbsp; -l – prints file details<br
+/>&nbsp;&nbsp;&nbsp; -a – prints all files, even the ones that are normally hidden<br
+/>&nbsp;&nbsp;&nbsp; -r – displays files in reverse order<br
+/>&nbsp;&nbsp;&nbsp; -R – recursively shows all subdirectories and their files<br
+/>&nbsp;&nbsp;&nbsp; Note: These can be grouped together. ls -l -h = ls -lh<br
+/><b>cd</b> – change directory<br
+/>&nbsp;&nbsp;&nbsp; cd .. – move up one directory level<br
+/>&nbsp;&nbsp;&nbsp; ~ = home directory<br
+/>&nbsp;&nbsp;&nbsp; . = current directory<br
+/><b>nano</b> – built-in text editor<br
+/><b>pwd</b> – print working directory (see pathway of current folder you're in)<br
+/>tab completion – can use 'tab' key to autocomplete file or directory names<br
+/><b>whoami</b> – your username<br
+/><b>which</b> - show the location of a command<br
+/><b>mkdir</b> - create a new directory<br
+/><b>rm</b> – remove file (WARNING, permanent)<br
+/>&nbsp;&nbsp;&nbsp; -r – recursive, removes all folder contents first<br
+/>&nbsp;&nbsp;&nbsp; -i&nbsp; – interactive, ask me if I really want to remove the file<br
+/><b>rmdir</b> – remove directory (will only work if empty)<br
+/><b>mv</b> – move file<br
+/>&nbsp;&nbsp;&nbsp; mv [old file name] [new file name] = essentially renaming a file<br
+/>&nbsp;&nbsp;&nbsp; can move more than one file at once<br
+/><b>cp</b> – copy file<br
+/><b>man command </b>– display a help file for the command.&nbsp;<br
+/><ul><li>Arrows navigate up and down</li
+><li>q to quit&nbsp;</li
+><li>this doesn't work on git-bash shell on Windows. You can use <b>--help</b> for many commands or look the command up online</li></ul
+><b>cat filename</b> – print the contents of a file to your terminal window<br
+/><b>wc</b> – word, line, character, etc count<br
+/><b>command &gt; file&nbsp;</b> – write the output to file rather than to the screen<br
+/><b>command &gt;&gt; file </b>– append output to file<br
+/><b>sort</b> - sort the contents of a file<br
+/>&nbsp;&nbsp;&nbsp; -n – numeric sort<br
+/><b>head</b> - grab the first N lines of a file<br
+/><b>tail</b> - grab the last N lines of a file<br
+/><b>command1 | command2 </b>- 'pipe'- vertical line: take the output of command1 and give it as input to command2<br
+/><b>echo</b> – write text directly to output (echo hello world)&nbsp;<br
+/>&nbsp;&nbsp;&nbsp; - can use echo to test commands e.g. echo mv $filename new-$filename in a loop<br
+/><b>bash</b> – execute program<br
+/><b>history</b> – shows all previous commands. they will have a line number in front<br
+/>&nbsp;&nbsp;&nbsp; !123 – execute command in line number 123<br
+/><b>uniq</b> – removes adjacent duplicates<br
+/><b>less</b>&nbsp; – view a file<br
+/>&nbsp;&nbsp;&nbsp; - 'q' to exit<br
+/>&nbsp;&nbsp;&nbsp; - arrows to navigate<br
+/><br
+/><b>*</b> = wildcard. *.txt = all text files in a directory<br
+/><b>$variablename</b> – '$' indicates a variable<br
+/><b>\</b> – indicates that a space exists in a filename (e.g., red\ dragon.dat). Can also put in " " marks.<br
+/><br
+/><br
+/><br
+/><b>Loop format:</b><br
+/>for filename in file1 file2 file3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;---for filename in a list of files<br
+/>do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;---starting to tell you what to do to each file<br
+/>head -3 $filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;---run head -3 on each file in the list of files<br
+/>done&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;---this is the end of what you should do to each file<br
+/><br
+/>you can also write this all on one line using the semi-colon to indicate line breaks<br
+/>&nbsp;&nbsp;&nbsp; for filename in file1 file2 file3; do; head -3 $filename; done<br
+/><br
+/><b>Shell Scripting:</b><br
+/><b>.sh</b> – shell script, a file type that can store bash commands<br
+/><b>#</b> – denotes comments in that line (not executed commands)<br
+/><br
+/>In shell script middle.sh:<br
+/>head -15 octane.pdb | tail -5<br
+/><br
+/>From the shell:&nbsp;<br
+/>bash middle.sh<br
+/><br
+/>Modified to:<br
+/>head -15 "$1" | tail -5<br
+/><br
+/>"$1" takes the first command line argument given after the program name (in this case we are expecting it to be the name of the file we want to run the script on)<br
+/><br
+/>From the shell:<br
+/>bash middle.sh octane.pdb<br
+/><br
+/>Modified to:<br
+/>head "$2" "$1" | tail "$3"<br
+/><br
+/>"$2" is the second argument, "$3" is the third argument<br
+/><br
+/>From the shell:<br
+/>bash middle.sh octane.pdb -15 -5<br
+/><br
+/>sorted.sh<br
+/>wc -l "$@" | sort -n<br
+/><br
+/>"$@" tells wc to use the complete list of arguments provided to the script<br
+/><br
+/>from the shell:<br
+/>bash sorted.sh *.pdb<br
+/><br
+/><br
+/>In file rungoostats.sh:<br
+/>#calculates goostats for my datafiles<br
+/>for datafile in "$@"<br
+/>do<br
+/>&nbsp;&nbsp;&nbsp; echo $datafile<br
+/>&nbsp;&nbsp;&nbsp; bash goostats -J 100 -r $datafile stats-$datafile<br
+/>done<br
+/><br
+/>from the shell:<br
+/>bash rungoostats.sh *[AB].txt<br
+/><br
+/>control+c will exit a code<br
+/><br
+/>----<br
+/>If you're on window's and you don't have nano, you can use the software carpentry windows installer which will install windows, sql, and a few items that make the git-bash shell nicer.<br
+/>Link here: <a href="https://jiffyclub.github.io/2015-07-06-scipy/#shell-windows">https://jiffyclub.github.io/2015-07-06-scipy/#shell-windows</a><br
+/>Under Software Carpentry Windows Installer<br
+/><br
+/>In the meantime you can use 'notepad draft.txt' instead of 'nano draft.txt'<br
+/>----<br
+/><br
+/><br
+/></body>
+</html>
